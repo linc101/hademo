@@ -107,11 +107,8 @@ spec:
           mountPath: /certs
       containers:
       - name: kubernetes-dashboard
-        image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.1
+        image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.0
         ports:
-        - containerPort: 8443
-          protocol: TCP
-          name: https
         - containerPort: 9090
           protocol: TCP
           name: http
@@ -122,26 +119,13 @@ spec:
           # If not specified, Dashboard will attempt to auto discover the API server and connect
           # to it. Uncomment only if the default does not work.
           # - --apiserver-host=http://my-address:port
-        volumeMounts:
-        - name: kubernetes-dashboard-certs
-          mountPath: /certs
-          readOnly: true
-          # Create on-disk volume to store exec logs
-        - mountPath: /tmp
-          name: tmp-volume
         livenessProbe:
           httpGet:
-            scheme: HTTPS
+            scheme: HTTP
             path: /
-            port: 8443
+            port: 9090
           initialDelaySeconds: 30
           timeoutSeconds: 30
-      volumes:
-      - name: kubernetes-dashboard-certs
-        secret:
-          secretName: kubernetes-dashboard-certs
-      - name: tmp-volume
-        emptyDir: {}
       serviceAccountName: kubernetes-dashboard
       # Comment the following tolerations if Dashboard must not be deployed on master
       tolerations:
