@@ -34,8 +34,7 @@ spec:
         volumeMounts: 
         - mountPath: /usr/share/nginx/html
           name: hello
-
-      volume: 
+      volumes: 
       - gitRepo:
           repository: https://github.com/linc101/helloFromHangzhou.git
         name: hello
