@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: replicaset-demo
+  name: replicaset-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: replicaset-demo
+  template:
+    metadata: 
+      labels: 
+        app: replicaset-demo
+    spec:
+      containers:
+      - image: nginx:1.12.2
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: nginx
+          protocol: TCP
+        resources:
+          limits:
+            memory: 170Mi
+          requests:
+            cpu: 100m
+            memory: 70Mi
