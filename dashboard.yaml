@@ -99,12 +99,6 @@ spec:
       labels:
         k8s-app: kubernetes-dashboard
     spec:
-      initContainers:
-      - name: kubernetes-dashboard-init
-        image: gcr.io/google_containers/kubernetes-dashboard-init-amd64:v1.0.1
-        volumeMounts:
-        - name: kubernetes-dashboard-certs
-          mountPath: /certs
       containers:
       - name: kubernetes-dashboard
         image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.0
