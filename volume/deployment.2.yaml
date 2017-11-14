@@ -37,5 +37,8 @@ spec:
       volumes: 
       - gitRepo:
           repository: https://github.com/linc101/helloFromHangzhou.git
+<<<<<<< HEAD
           directory: helloFromHangzhou
+=======
+>>>>>>> 444b4919efb25eaa7bde3b6880e110edd9528235
         name: hello
